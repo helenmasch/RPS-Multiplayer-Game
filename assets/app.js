@@ -1,5 +1,20 @@
 $(document).ready(function() {
 
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDkj_4sYwTvkhgwgXIDvd8fEk0N2IQlyp8",
+    authDomain: "class-activity-020120.firebaseapp.com",
+    databaseURL: "https://class-activity-020120.firebaseio.com",
+    projectId: "class-activity-020120",
+    storageBucket: "class-activity-020120.appspot.com",
+    messagingSenderId: "326113840454",
+    appId: "1:326113840454:web:c4727e2b6d15934afe2947",
+    measurementId: "G-9FFVWTS5MH"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
 // Array listing out rock, paper, scissors options
 var computerChoices = ["r", "p", "s"];
 
