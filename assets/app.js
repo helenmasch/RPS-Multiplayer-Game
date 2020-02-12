@@ -11,6 +11,14 @@ document.onkeyup = function(event) {
 
     // Randomly chooses a choice from array aka computer's guess. 
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    // Runs code if the user presses "r" or "p" or "s".
+    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+
+        // Alert the userGuess + computerGuess
+        alert("User guess: " + userGuess);
+        alert("Computer guess: " + computerGuess);
+    }
 }
 
 });
