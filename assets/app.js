@@ -58,15 +58,14 @@ document.onkeyup = function(event) {
 
         if ((userGuess === "p") && (computerGuess === "r")) {
             wins++;
-        }
-
-        if ((userGuess === "r") && (computerGuess === "p")) {
+            
+        } else if (userGuess === computerGuess) {
+            ties++;
+        } else {
             losses++;
         }
 
-        if ((userGuess === "s") && (computerGuess === "r")) {
-            losses++;
-        }
+
 
         // Hide directions after game starts (user + computer guesses)
         gameDirections.textContent = "";
