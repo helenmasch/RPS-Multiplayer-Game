@@ -47,6 +47,27 @@ document.onkeyup = function(event) {
     // Runs code if the user presses "r" or "p" or "s".
     if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
 
+        // If the user chooses r, p or s and the computer guess another variable, increases or decreases wins/losses or ties.
+        if ((userGuess === "r") && (computerGuess === "s")) {
+            wins++;
+        }
+
+        if ((userGuess === "s") && (computerGuess === "p")) {
+            wins++;
+        }
+
+        if ((userGuess === "p") && (computerGuess === "r")) {
+            wins++;
+        }
+
+        if ((userGuess === "r") && (computerGuess === "p")) {
+            losses++;
+        }
+
+        if ((userGuess === "s") && (computerGuess === "r")) {
+            losses++;
+        }
+
         // Hide directions after game starts (user + computer guesses)
         gameDirections.textContent = "";
 
