@@ -15,6 +15,9 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
+  // Create a variable to reference the database.
+  var database = firebase.database();
+
 // Array listing out rock, paper, scissors options
 var computerChoices = ["r", "p", "s"];
 
