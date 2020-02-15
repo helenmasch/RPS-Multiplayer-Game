@@ -15,8 +15,15 @@
         <h1>Rock Paper Scissors Multiplayer Game</h1>
     </div class="header">
 
+    <input type="text" id="text">
+    <button id="adduser">Add</button>
+
     <div>
         <h3 id="game-directions">Pick between a 2 player game or a 3 player game to start. Press r, p or s to get the game started!</h3>
+        <div id="players">
+            
+        </div>
+        
         <p id="userchoice1-answer"></p>
         <p id="userchoice2-answer"></p>
         <p id="computerchoice-answer"></p>
@@ -24,16 +31,17 @@
         <p id="losses-text"></p>
         <p id="ties-text"></p>
     </div>
+    <!-- JQuery and JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
 
-    <!-- JQuery and JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
     <script type="text/javascript" src="./assets/app.js"></script>
 </body>
 </html>

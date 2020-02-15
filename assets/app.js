@@ -2,21 +2,54 @@ $(document).ready(function() {
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyDkj_4sYwTvkhgwgXIDvd8fEk0N2IQlyp8",
-    authDomain: "class-activity-020120.firebaseapp.com",
-    databaseURL: "https://class-activity-020120.firebaseio.com",
-    projectId: "class-activity-020120",
-    storageBucket: "class-activity-020120.appspot.com",
-    messagingSenderId: "326113840454",
-    appId: "1:326113840454:web:c4727e2b6d15934afe2947",
-    measurementId: "G-9FFVWTS5MH"
+    apiKey: "AIzaSyCPby64S1gkCpFZeYkafKfaqDNN61AB4f4",
+  authDomain: "rps-multiplayer-game-c8781.firebaseapp.com",
+  databaseURL: "https://rps-multiplayer-game-c8781.firebaseio.com",
+  projectId: "rps-multiplayer-game-c8781",
+  storageBucket: "rps-multiplayer-game-c8781.appspot.com",
+  messagingSenderId: "675424472021",
+  appId: "1:675424472021:web:c7435b115b86f4e02b0b5c"
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
   // Create a variable to reference the database.
   var database = firebase.database();
+
+  var connectionsRef = database.ref("/connections");
+
+// '.info/connected' is a special location provided by Firebase that is updated every time
+// the client's connection state changes.
+// '.info/connected' is a boolean value, true if the client is connected and false if they are not.
+var connectedRef = database.ref(".info/connected");
+
+// When the client's connection state changes...
+connectedRef.on("value", function(snap) {
+
+  // If they are connected..
+  if (snap.val()) {
+
+ 
+    // // Add user to the connections list.
+    var con = connectionsRef.push(true) 
+    // console.log(count);
+    // count++
+    // Remove user from the connection list when they disconnect.
+    con.onDisconnect().remove();
+  }
+});
+
+// When first loaded or when the connections list changes...
+connectionsRef.on("child_added", function(snapshot) {
+
+  // Display the viewer count in the html.
+  // The number of online users is the number of children in the connections list.
+   
+if(snapshot.val().name!=undefined)
+  $("#players").append(snapshot.val().name +"<br>")
+});
+
 
 // Array listing out rock, paper, scissors options
 var computerChoices = ["r", "p", "s"];
@@ -34,6 +67,24 @@ var computerChoiceAnswer = document.getElementById("computerchoice-answer");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var tiesText = document.getElementById("ties-text");
+
+var addUser = document.getElementById("adduser");
+
+document.addEventListener("click", function() {
+    var player = document.getElementById("text").value
+ 
+    
+      if(player.length>0){
+  // Add user to the connections list.
+  var con = connectionsRef.push({ 
+    name: player
+  }) 
+  
+  
+      }
+      
+      
+})
 
 // Whenever a key is pressed this function will run
 document.onkeyup = function(event) {
@@ -58,14 +109,12 @@ document.onkeyup = function(event) {
 
         if ((userGuess === "p") && (computerGuess === "r")) {
             wins++;
-            
+
         } else if (userGuess === computerGuess) {
             ties++;
         } else {
             losses++;
         }
-
-
 
         // Hide directions after game starts (user + computer guesses)
         gameDirections.textContent = "";
